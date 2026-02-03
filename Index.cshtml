@@ -1,0 +1,56 @@
+﻿@model PersonInfoModel
+
+<!--
+    Rohith Pulyala
+    CIS 174
+    1/20/2026
+-->
+
+<!--Page Index-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age Calculator</title>
+</head>
+<body>
+    @{
+        ViewData["Title"] = "Age Calculator";
+    }
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-12 shadow p-4 rounded bg-light">
+                <h2 class="mb-4">Calculate Your Age This Year!</h2>
+
+                <form asp-action="Index" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Name:</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="BirthYear" class="form-label">Birth Year:</label>
+                        <input asp-for="BirthYear" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Clear</a>
+                    </div>
+                </form>
+                
+                @if (ViewBag.AgeResult != null)
+                {
+                    <div class="alert alert-success mt-4">
+                        On December 31st of @PersonInfoModel.CURRENT_YEAR, you, <strong>@Model.Name</strong>, will be <strong>@ViewBag.AgeResult</strong> years old.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
